@@ -6,7 +6,9 @@ import com.example.miniproject.dto.response.CombinedItemsResponse;
 import com.example.miniproject.dto.response.ItemResponse;
 import com.example.miniproject.enity.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface ItemService {
     ResponseEntity<?> addItem(ItemCreationRequest itemCreationRequest);
     ResponseEntity<?> updateItem(ItemUpdateRequest itemUpdateRequest);

@@ -21,19 +21,24 @@ public class TemplateSearchItems {
     ) {
         List<Object> params = new ArrayList<>();
         StringBuilder sql = new StringBuilder("""
-                            SELECT
-                                i.id,
-                                i.price,
-                                i.name,
-                                i.description,
-                                i.address,
-                                (
-                                    SELECT STRING_AGG(ii.image_url, ', ')
-                                    FROM item_image_urls ii
-                                    WHERE ii.item_id = i.id
-                                ) AS image_urls
-                            FROM items i
-                            WHERE 1=1
+                 SELECT
+                     i.id,
+                     i.price,
+                     i.name,
+                     i.description,
+                     i.address,
+                     CASE WHEN si.id IS NOT NULL THEN TRUE ELSE FALSE END AS is_saved,
+                     (
+                         SELECT STRING_AGG(ii.image_url, ', ')
+                         FROM item_image_urls ii
+                         WHERE ii.item_id = i.id
+                     ) AS image_urls
+                 FROM items i
+                 LEFT JOIN saved_items si
+                     ON si.item_id = i.id
+                    AND si.user_id = :currentUserId
+                 WHERE 1=1;
+                
                 
                 """);
 
@@ -69,6 +74,7 @@ public class TemplateSearchItems {
                     .price(rs.getDouble("price"))
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
+                    .isSaved(rs.getBoolean("saved_items"))
                     .address(rs.getString("address"))
                     .imageUrls(imageUrls)
                     .build();

@@ -17,5 +17,6 @@ public class AllItemUserResponse {
     private String name;
     private String description;
     private String address;
+    boolean isSaved;
     private List<String> imageUrls;
 }

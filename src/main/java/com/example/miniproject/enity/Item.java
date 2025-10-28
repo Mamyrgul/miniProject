@@ -32,4 +32,6 @@ public class Item {
     List<String> imageUrls;
     @ManyToOne
     User user;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    List<Feedback> feedbacks;
 }
