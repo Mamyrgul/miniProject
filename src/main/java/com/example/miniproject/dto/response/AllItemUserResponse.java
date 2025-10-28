@@ -13,7 +13,6 @@ import java.util.List;
 @Builder
 public class AllItemUserResponse {
     private Long id;
-    private double price;
     private String name;
     private String description;
     private String address;

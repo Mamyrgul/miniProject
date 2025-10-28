@@ -23,7 +23,6 @@ public class TemplateSearchItems {
         StringBuilder sql = new StringBuilder("""
                  SELECT
                      i.id,
-                     i.price,
                      i.name,
                      i.description,
                      i.address,
@@ -71,7 +70,6 @@ public class TemplateSearchItems {
 
             return AllItemUserResponse.builder()
                     .id(rs.getLong("id"))
-                    .price(rs.getDouble("price"))
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
                     .isSaved(rs.getBoolean("saved_items"))

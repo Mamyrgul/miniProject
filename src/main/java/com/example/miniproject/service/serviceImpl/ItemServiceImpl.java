@@ -40,7 +40,6 @@ public class ItemServiceImpl implements ItemService {
                 () -> new NotFoundException("User with name: " + currentUserEmail + " not found"));
         Item item = Item.builder()
                 .imageUrls(itemCreationRequest.imageUrls())
-                .price(itemCreationRequest.price())
                 .name(itemCreationRequest.name())
                 .description(itemCreationRequest.description())
                 .address(itemCreationRequest.address())
@@ -77,7 +76,6 @@ public class ItemServiceImpl implements ItemService {
                 item.setImageUrls(updatedImages);
             }
 
-            item.setPrice(itemUpdateRequest.price());
             item.setName(itemUpdateRequest.name());
             item.setDescription(itemUpdateRequest.description());
 
@@ -95,7 +93,6 @@ public class ItemServiceImpl implements ItemService {
         return ItemResponse.builder()
                 .id(item.getId())
                 .name(item.getName())
-                .price(item.getPrice())
                 .description(item.getDescription())
                 .imageUrls(item.getImageUrls())
                 .address(item.getAddress())

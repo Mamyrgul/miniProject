@@ -21,7 +21,6 @@ public class TemplateSavedItemRepo {
         String sql = """
              SELECT
                 i.id,
-                i.price,
                 i.name,
                 i.description,
                 i.address,
@@ -48,7 +47,6 @@ public class TemplateSavedItemRepo {
                     .id(rs.getLong("id"))
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
-                    .price(rs.getDouble("price"))
                     .address(rs.getString("address"))
                     .isSaved(rs.getBoolean("saved_items"))
                     .imageUrls(images)
@@ -60,7 +58,6 @@ public class TemplateSavedItemRepo {
         String sql = """
         SELECT
             i.id,
-            i.price,
             i.name,
             i.description,
             i.address,
@@ -92,7 +89,6 @@ public class TemplateSavedItemRepo {
                     .id(rs.getLong("id"))
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
-                    .price(rs.getDouble("price"))
                     .address(rs.getString("address"))
                     .isSaved(rs.getBoolean("saved_items"))
                     .imageUrls(images)

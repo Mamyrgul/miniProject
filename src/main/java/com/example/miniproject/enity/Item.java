@@ -20,7 +20,6 @@ public class Item {
     @SequenceGenerator(sequenceName = "item_seq", name = "item_gen", allocationSize = 1, initialValue = 100)
     Long id;
     String name;
-    double price;
     @Column(length = 500)
     String description;
     boolean isBlocked;
