@@ -100,6 +100,7 @@ public class ItemServiceImpl implements ItemService {
                 .build();
     }
 
+    @Override
     public CombinedItemsResponse getCombinedItems(
             Long userId,
             int page,

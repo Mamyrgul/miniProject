@@ -9,8 +9,6 @@ import java.util.List;
 @Builder
 public record ItemCreationRequest(
          List<String> imageUrls,
-         @NotNull
-         double price,
          String name,
          @Size(max = 1000)
          String description,

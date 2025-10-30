@@ -45,6 +45,22 @@ public class JwtService {
             throw new RuntimeException("Invalid JWT token", e);
         }
     }
+    public String extractEmail(String token) {
+        return com.auth0.jwt.JWT.decode(token).getClaim("email").asString();
+        // или getSubject(), если вы кладёте email в subject при генерации
+        // return com.auth0.jwt.JWT.decode(token).getSubject();
+    }
+
+    public String extractRole(String token) {
+        String role = com.auth0.jwt.JWT.decode(token).getClaim("role").asString();
+        if (role == null || role.isBlank()) role = "USER";
+        return role;
+    }
+
+    public void verifyTokenOrThrow(String token) {
+        var algorithm = com.auth0.jwt.algorithms.Algorithm.HMAC256(secret);
+        com.auth0.jwt.JWT.require(algorithm).build().verify(token); // бросит исключение, если невалиден/просрочен
+    }
 
     private Algorithm getAlgorithm() {
         return Algorithm.HMAC256(secret);

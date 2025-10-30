@@ -8,7 +8,6 @@ import java.util.List;
 public record ItemResponse(
         Long id,
         String name,
-        double price,
         String description,
         List<String> imageUrls,
         Long userId,

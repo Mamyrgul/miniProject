@@ -10,9 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -42,22 +40,17 @@ public class ItemApi {
     }
 
     @Operation(summary = "Получение списка вещей для пользователей с фильтрами, поиском")
-    @Secured("USER")
+    @Secured("ROLE_USER")
     @GetMapping("/for-users")
     public ResponseEntity<CombinedItemsResponse> getCombinedHouses(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "16") int size,
             @RequestParam(required = false) String search
     ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User userDetails = (User) auth.getPrincipal();
-        Long userId = userDetails.getId();
-        CombinedItemsResponse response = itemService.getCombinedItems(
-                userId, page, size,
-                search
-        );
+        CombinedItemsResponse response = itemService.getCombinedItems(null, page, size, search);
         return ResponseEntity.ok(response);
     }
+
 
     @Operation(summary = "Удаление публикацию по ID (только для админа и пользователя кто публиковал)")
     @DeleteMapping("/items/{itemId}")

@@ -3,8 +3,8 @@ package com.example.miniproject.repo.template;
 import com.example.miniproject.dto.response.AllItemUserResponse;
 import com.example.miniproject.exception.NotFoundException;
 import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,28 +13,27 @@ import java.util.List;
 
 @Service
 @Builder
+@RequiredArgsConstructor
 public class TemplateSavedItemRepo {
+
     private final JdbcTemplate jdbcTemplate;
-    private final PasswordEncoder passwordEncoder;
 
     public List<AllItemUserResponse> getSaved(Long userId) {
         String sql = """
-             SELECT
+            SELECT
                 i.id,
                 i.name,
                 i.description,
                 i.address,
+                (
                     SELECT STRING_AGG(ii.image_urls, ', ')
                     FROM item_image_urls ii
                     WHERE ii.item_id = i.id
                 ) AS image_urls,
-                EXISTS (
-                    SELECT 1
-                    FROM saved_items si
-                    WHERE si.item_id = i.id AND si.user_id = ?
-                ) AS saved_items
+                TRUE AS saved_items
             FROM items i
-            WHERE i.id = ?
+            JOIN saved_items si ON si.item_id = i.id
+            WHERE si.user_id = ?
             """;
 
         return jdbcTemplate.query(sql, new Object[]{userId}, (rs, rowNum) -> {
@@ -48,32 +47,33 @@ public class TemplateSavedItemRepo {
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
                     .address(rs.getString("address"))
-                    .isSaved(rs.getBoolean("saved_items"))
+                    .isSaved(rs.getBoolean("saved_items")) // здесь всегда true
                     .imageUrls(images)
                     .build();
         });
     }
 
+    // Один элемент по id с флагом, сохранён ли он данным пользователем
     public AllItemUserResponse getSaveItemById(Long userId, Long itemId) {
         String sql = """
-        SELECT
-            i.id,
-            i.name,
-            i.description,
-            i.address,
-            (
-                SELECT STRING_AGG(ii.image_url, ', ')
-                FROM item_image_urls ii
-                WHERE ii.item_id = i.id
-            ) AS image_urls,
-            EXISTS (
-                SELECT 1
-                FROM saved_items si
-                WHERE si.item_id = i.id AND si.user_id = ?
-            ) AS saved_items
-        FROM items i
-        WHERE i.id = ?
-    """;
+            SELECT
+                i.id,
+                i.name,
+                i.description,
+                i.address,
+                (
+                    SELECT STRING_AGG(ii.image_urls, ', ')
+                    FROM item_image_urls ii
+                    WHERE ii.item_id = i.id
+                ) AS image_urls,
+                EXISTS (
+                    SELECT 1
+                    FROM saved_items si
+                    WHERE si.item_id = i.id AND si.user_id = ?
+                ) AS saved_items
+            FROM items i
+            WHERE i.id = ?
+            """;
 
         return jdbcTemplate.query(sql, new Object[]{userId, itemId}, rs -> {
             if (!rs.next()) {

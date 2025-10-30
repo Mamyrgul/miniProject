@@ -11,10 +11,6 @@ import java.util.List;
 @Builder
 public record ItemUpdateRequest(
         Long houseId,
-        @NotNull(message = "Price is required")
-        @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
-        Double price,
-
         @NotBlank(message = "Name is required")
         String name,
 
