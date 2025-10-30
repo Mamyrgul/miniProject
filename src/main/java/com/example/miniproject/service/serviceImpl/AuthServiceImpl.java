@@ -4,7 +4,7 @@ import com.example.miniproject.config.jwt.JwtService;
 import com.example.miniproject.dto.request.SignInRequest;
 import com.example.miniproject.dto.request.SignUpRequest;
 import com.example.miniproject.dto.response.AuthResponse;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.User;
 import com.example.miniproject.enums.Role;
 import com.example.miniproject.exception.AlreadyExist;
 import com.example.miniproject.exception.NotFoundException;

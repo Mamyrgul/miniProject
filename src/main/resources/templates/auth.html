@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+</head>
+<body>
+<h2>Регистрация</h2>
+<div id="register">
+    <input id="fullName" type="text" placeholder="Имя" required>
+    <input id="phone" type="text" placeholder="Телефон" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Пароль" required>
+    <input id="confirm" type="password" placeholder="Подтверждение пароля" required>
+    <button type="button" onclick="registerUser()">Зарегистрироваться</button>
+</div>
+
+<h2>Вход</h2>
+<div id="login">
+    <input id="loginEmail" type="email" placeholder="Email" required>
+    <input id="loginPassword" type="password" placeholder="Пароль" required>
+    <button type="button" onclick="loginUser()">Войти</button>
+</div>
+
+<hr>
+<div id="result"></div>
+</body>
+</html>

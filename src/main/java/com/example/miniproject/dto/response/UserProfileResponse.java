@@ -1,16 +1,14 @@
 package com.example.miniproject.dto.response;
 
 import java.util.List;
+import lombok.Builder;
 
+@Builder
 public record UserProfileResponse(
-        String fullName,
-        String profilImage,
         Long id,
-        String name,
-        String description,
-        String address,
-        boolean isSaved,
-        List<String>imageUrls
+        String fullName,
+        String profileImage,
+        List<AllItemUserResponse> myItems,
+        List<AllItemUserResponse> savedItems
+) {}
 
-) {
-}

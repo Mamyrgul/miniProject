@@ -2,9 +2,9 @@ package com.example.miniproject.service.serviceImpl;
 
 import com.example.miniproject.dto.response.AllItemUserResponse;
 import com.example.miniproject.dto.response.SimpleResponse;
-import com.example.miniproject.enity.Item;
-import com.example.miniproject.enity.SaveItems;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.Item;
+import com.example.miniproject.entity.SaveItems;
+import com.example.miniproject.entity.User;
 import com.example.miniproject.exception.ForbiddenException;
 import com.example.miniproject.exception.NotFoundException;
 import com.example.miniproject.repo.ItemRepo;

@@ -1,8 +1,9 @@
 package com.example.miniproject.service;
 
 import com.example.miniproject.dto.request.MessageRequest;
-import com.example.miniproject.enity.Message;
-import com.example.miniproject.enity.MessageReaction;
+import com.example.miniproject.dto.response.MessageResponse;
+import com.example.miniproject.entity.Message;
+import com.example.miniproject.entity.MessageReaction;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface MessageService {
     void deleteMessage(Long messageId);
     MessageReaction addReaction(Long messageId, String emoji);
     void removeReaction(Long messageId);
+    List<MessageResponse> getFullChatWithUser(Long otherUserId);
 }

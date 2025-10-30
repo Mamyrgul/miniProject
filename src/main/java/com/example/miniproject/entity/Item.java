@@ -1,4 +1,4 @@
-package com.example.miniproject.enity;
+package com.example.miniproject.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

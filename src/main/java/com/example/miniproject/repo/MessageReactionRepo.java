@@ -1,6 +1,6 @@
 package com.example.miniproject.repo;
 
-import com.example.miniproject.enity.MessageReaction;
+import com.example.miniproject.entity.MessageReaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.example.miniproject.enity;
+package com.example.miniproject.entity;
 
 import com.example.miniproject.enums.MessageStatus;
 import jakarta.persistence.*;

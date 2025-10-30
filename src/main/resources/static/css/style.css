@@ -19,14 +19,12 @@
 #register-error.text-red-500,
 #add-item-error.text-red-500 {
     color: white; /* Цвет текста */
-    background-color: var(--error-color); /* Красный фон */
     border: 1px solid #dc2626;
 }
 
 /* Сообщения об успехе (зеленый фон, белый текст) */
 #login-message.text-green-500 {
     color: white; /* Цвет текста */
-    background-color: var(--secondary-color); /* Зеленый фон */
     border: 1px solid #059669;
 }
 
@@ -62,6 +60,5 @@
 .item-card-price {
     font-size: 1.125rem; /* text-lg */
     font-weight: 800; /* font-extrabold */
-    color: var(--primary-color); /* blue-500 */
     margin-top: 0.5rem;
 }

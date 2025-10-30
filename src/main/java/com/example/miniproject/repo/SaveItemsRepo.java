@@ -1,8 +1,8 @@
 package com.example.miniproject.repo;
 
-import com.example.miniproject.enity.Item;
-import com.example.miniproject.enity.SaveItems;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.Item;
+import com.example.miniproject.entity.SaveItems;
+import com.example.miniproject.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

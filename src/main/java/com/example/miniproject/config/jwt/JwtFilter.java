@@ -1,7 +1,7 @@
 package com.example.miniproject.config.jwt;
 
 import com.auth0.jwt.JWT;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

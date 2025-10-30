@@ -2,10 +2,10 @@ package com.example.miniproject.service.serviceImpl;
 
 import com.example.miniproject.dto.request.FeedbackRequest;
 import com.example.miniproject.dto.response.SimpleResponse;
-import com.example.miniproject.enity.Feedback;
-import com.example.miniproject.enity.Item;
-import com.example.miniproject.enity.Like;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.Feedback;
+import com.example.miniproject.entity.Item;
+import com.example.miniproject.entity.Like;
+import com.example.miniproject.entity.User;
 import com.example.miniproject.exception.ForbiddenException;
 import com.example.miniproject.exception.NotFoundException;
 import com.example.miniproject.repo.FeedbackRepo;

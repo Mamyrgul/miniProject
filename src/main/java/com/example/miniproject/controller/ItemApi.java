@@ -4,7 +4,7 @@ import com.example.miniproject.dto.request.ItemCreationRequest;
 import com.example.miniproject.dto.request.ItemUpdateRequest;
 import com.example.miniproject.dto.response.CombinedItemsResponse;
 import com.example.miniproject.dto.response.ItemResponse;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.User;
 import com.example.miniproject.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(maxAge = 3600, origins = "*")
-@RequestMapping("/api/house")
+@RequestMapping("/api/item")
 public class ItemApi {
 
     private final ItemService itemService;

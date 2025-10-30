@@ -1,10 +1,13 @@
 package com.example.miniproject.controller;
 
 import com.example.miniproject.dto.request.MessageRequest;
-import com.example.miniproject.enity.Message;
-import com.example.miniproject.enity.MessageReaction;
+import com.example.miniproject.dto.response.MessageResponse;
+import com.example.miniproject.entity.Message;
+import com.example.miniproject.entity.MessageReaction;
 import com.example.miniproject.service.MessageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/messages")
 @RequiredArgsConstructor
-public class MessageController {
+@CrossOrigin(maxAge = 3600, origins = "*")
+public class MessageApi {
 
     private final MessageService messageService;
 
@@ -40,5 +44,11 @@ public class MessageController {
     @DeleteMapping("/{messageId}/react")
     public void removeReaction(@PathVariable Long messageId) {
         messageService.removeReaction(messageId);
+    }
+    @GetMapping("/chat/{otherUserId}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<MessageResponse>> getFullChatWithUser(@PathVariable Long otherUserId) {
+        List<MessageResponse> chat = messageService.getFullChatWithUser(otherUserId);
+        return ResponseEntity.ok(chat);
     }
 }

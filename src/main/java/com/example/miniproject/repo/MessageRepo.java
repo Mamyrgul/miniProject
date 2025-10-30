@@ -1,7 +1,7 @@
 package com.example.miniproject.repo;
 
-import com.example.miniproject.enity.Message;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.Message;
+import com.example.miniproject.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

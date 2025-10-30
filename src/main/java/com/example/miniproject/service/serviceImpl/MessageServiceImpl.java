@@ -2,9 +2,9 @@ package com.example.miniproject.service.serviceImpl;
 
 import com.example.miniproject.dto.request.MessageRequest;
 import com.example.miniproject.dto.response.MessageResponse;
-import com.example.miniproject.enity.Message;
-import com.example.miniproject.enity.MessageReaction;
-import com.example.miniproject.enity.User;
+import com.example.miniproject.entity.Message;
+import com.example.miniproject.entity.MessageReaction;
+import com.example.miniproject.entity.User;
 import com.example.miniproject.enums.MessageStatus;
 import com.example.miniproject.repo.MessageReactionRepo;
 import com.example.miniproject.repo.MessageRepo;
@@ -104,31 +104,22 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public List<MessageResponse> getFullChatWithUser(Long otherUserId) {
-        // ✅ 1. Получаем email текущего пользователя
         String currentUserEmail = SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getName();
-
-        // ✅ 2. Проверяем, что пользователь существует
         User currentUser = userRepository.findByEmail(currentUserEmail)
                 .orElseThrow(() -> new RuntimeException("Current user not found"));
-
-        // ✅ 3. Проверяем, что собеседник существует
         User otherUser = userRepository.findById(otherUserId)
                 .orElseThrow(() -> new RuntimeException("Receiver not found"));
-
-        // ✅ 4. Получаем чат через JOIN FETCH (один SQL-запрос)
         List<Message> messages = messageRepository.findFullConversation(currentUser, otherUser);
-
-        // ✅ 5. Маппим в DTO
         return messages.stream()
                 .map(m -> new MessageResponse(
                         m.getId(),
                         m.getContent(),
                         m.getImageUrl(),
                         m.getLinkUrl(),
-                        m.getSender().getName(),      // имя отправителя
-                        m.getReceiver().getName(),    // имя получателя
+                        m.getSender().getUsername(),      // имя отправителя
+                        m.getReceiver().getUsername(),    // имя получателя
                         m.getTimestamp(),
                         m.getStatus().name()          // статус (SENT, READ и т.п.)
                 ))

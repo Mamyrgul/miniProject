@@ -1,4 +1,4 @@
-package com.example.miniproject.enity;
+package com.example.miniproject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,8 +6,7 @@ import lombok.*;
 @Entity
 @Table(
         name = "message_reactions",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "message_id"})
-) // 🔑 один пользователь = одна реакция на одно сообщение
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "message_id"}))
 @Getter
 @Setter
 @NoArgsConstructor

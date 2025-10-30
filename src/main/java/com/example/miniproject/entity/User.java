@@ -1,4 +1,4 @@
-package com.example.miniproject.enity;
+package com.example.miniproject.entity;
 
 import com.example.miniproject.enums.Role;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "userss")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
